@@ -1,0 +1,289 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<Script language="JavaScript">
+ 
+			var Resultados=new Array(15);//Declarar arreglo para almacenar aciertos y errores
+			var ac,er,ca;//Declarar variables para aciertos, errores y calificacion
+		
+			function Nombre(){//Funcion para pedir numero
+				var no,i; //Declarar variables para almacenar nambre y para el for
+				no=prompt("Introduce tu nombre");//Caja de texto
+				form1.nom.value=no;//Ponemos el nombre en la caja de texto 
+				form1.nom.disabled= true;
+				for(i=0;i<=14;i++)//ciclo for para inicializar el arreglo en 0
+					Resultados[i]=0;//asignar valores en todos con 0
+			}
+			function Verificar(a,b){ //funcion para almacenar los valores clickeados por el usuario "0 u 1"
+				var pre,res;
+				pre=a;//El numero de la pergunta
+				res=b; //y el valor 0 o 1
+				Resultados[pre]=res;//Almacenar en el arreglo los valores correspondientes 0 o 1 en el indice que corresponde 
+			}
+			function Evalua(){//Para contar cuantos errores,aciertos y que calificacion obtine y despues mandar una nota
+				var i,n;
+				ac=0;
+				er=0;
+				ca=0;
+				for(i=0;i<=14;i++){
+					if (Resultados[i]==1)//Preguntar que si es igual a uno 
+						ac=ac+1;// lo aumentamos en aciertos 
+					else
+						er=er+1;//Lo aumentamos a errores
+				}
+				ca=(ac*10)/15;//Para obtener la calificacion 
+				form1.aci.value=ac;//A el cuadro de texto donde van los aciertos le asignamos lo que tiene ac
+				form1.err.value=er;//A el cuadro de texto donde van los errores le asignamos lo que tiene er
+				form1.cal.value=ca;//A el cuadro de texto donde van la calificacion le asignamos lo que tiene ca
+				n=form1.nom.value//Solicitamos el nombre para los diferentes msj
+				if (ca<5.5)//para calificacion reprobatoria y mandamos el msj que sigue
+					form1.mens.value=("Hola!!! "+n+". Lo lamento has reprobado el examen de BIOLOGIA . Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Estudia mas!! Esfuerzate");//Imprime la nota en el text area
+				else
+					if (ca>=5.5 && ca<6.5)
+						form1.mens.value=("Hola!!! "+n+". Felicidades has aprobado el examen de BIOLOGIA. Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Es una calificacion baja. Sigue Estudiando");
+					else
+						if (ca>=6.5 && ca<7.5)
+							form1.mens.value=("Hola!!! "+n+". Felicidades has aprobado el examen de BIOLOGIA. Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Es una calificacion regular. Sigue esforzandote");
+						else
+							if (ca>=7.5 && ca<8.5)
+								form1.mens.value=("Hola!!! "+n+". Felicidades has aprobado el examen de BIOLOGIA. Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Calificacion: regular");
+							else
+								if (ca>=8.5 && ca<9.5)
+									form1.mens.value=("Hola!!! "+n+". Felicidades has aprobado el examen de BIOLOGIA. Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Calificacion buena");
+								else
+									if (ca>=9.5 && ca<=10)
+										form1.mens.value=("Hola!!! "+n+". Felicidades has aprobado el examen de BIOLOGIA. Con un total de "+ac+" aciertos y "+er+" errores. Obteniendo una calificacion de "+ca+". Calificacion exelente");
+				//for(i=0;i<=14;i++)
+					//document.write(i+": "+Resultados[i]+"<p>");
+			}
+			function Limpia(){//Volver a inicializar el arreglo y variables
+				var i;
+				ac=0;
+				er=0;
+				ca=0;
+				for(i=0;i<=14;i++)
+					Resultados[i]=0;
+			}
+		</Script>
+       <BODY OnLoad=Nombre()>
+</head> 
+
+<body> 
+
+
+<div data-role="page" id="page" >
+	<div data-role="header">
+		<h1>MEDIO AMBIENTE </h1>
+        <center>
+      
+    <img src="imagenes/aff.jpg" width="400" height="350"> </div>
+    </center>
+	<div data-role="content">	
+     
+		<ul data-role="listview">
+			<li><a href="#page2" data-transition="pop">CONTAMINACION</a></li>
+            <li><a href="#page3" data-transition="pop">3 R</a></li>
+			<li><a href="#page4" data-transition="pop">EXAMEN</a></li>
+       
+		</ul>
+      
+	</div>
+	<div data-role="footer" data-position="fixed" data-fullscreen="true">
+		<h4>lecheros</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header">
+ 
+    <a data-role="button" data-rel="back" data-direction="reverse" data-icon="back">ATRAS</a>
+  
+		<h1>IMAGENES</h1>
+	</div>
+	<div data-role="content">	
+    <img src="imagenes/aff.jpg" width="200" height="204"><img src="imagenes/aff3.jpg" width="255" height="238"><img src="imagenes/conta1.jpg" width="269" height="250"></div>
+    <h1>LA CONTAMINACION</h1>
+  <center>
+  </center>
+<p>
+  La contaminación es la introducción de sustancias en un medio que provocan que este sea inseguro o no apto para su uso.1 El medio puede ser un ecosistema, un medio físico o un ser vivo. El contaminante puede ser una sustancia química, energía (como sonido, calor, luz o radiactividad).<p>
+
+Es siempre una alteración negativa del estado natural del medio, y por lo general, se genera como consecuencia de la actividad humana considerándose una forma de impacto ambiental.<p>
+
+La contaminación puede clasificarse según el tipo de fuente de donde proviene, o por la forma de contaminante que emite o medio que contamina. Existen muchos agentes contaminantes entre ellos las sustancias químicas (como plaguicidas, cianuro, herbicidas y otros.), los residuos urbanos, el petróleo, o las radiaciones ionizantes. Todos estos pueden producir enfermedades, daños en los ecosistemas o el medioambiente. Además existen muchos contaminantes gaseosos que juegan un papel importante en diferentes fenómenos atmosféricos, como la generación de lluvia ácida, el debilitamiento de la capa de ozono, y el cambio climático.<p>
+
+Hay muchas formas de combatir la contaminación, y legislaciones internacionales que regulan las emisiones contaminantes de los países que adhieren estas políticas. La contaminación está generalmente ligada al desarrollo económico y social. Actualmente muchas organizaciones internacionales como la ONU ubican al desarrollo sostenible como una de las formas de proteger al medioambiente para las actuales y futuras generaciones. </p>
+</div>
+
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h4>lecheros</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page3">
+	<div data-role="header">
+    <a data-role="button" data-rel="back" data-direction="reverse" data-icon="back">atras</a>
+		<h1>3 R</h1>
+	</div>
+    <center>
+      <img src="imagenes/HOLA4.jpg" width="250" height="150">
+    </center>
+<div data-role="content">	
+
+ 
+ 
+ <div data-role="collapsible">
+ 
+ 
+ 
+
+  <h1>REUTILIZAR</h1>
+  <center>
+  <img src="imagenes/HOLA1.jpg" width="144" height="90">
+  </center>
+<p>
+  Reutilizar- se refiere a utilizar los materiales que aún pueden servir, en lugar de desecharlos, así menos basura produciremos y menos recursos agotables tendremos que "gastar". Por ejemplo, utiliza botellas de PET o vidrio para almacenar agua, aceites o alimentos; compra líquidos en botellas de vidrio retornables; utiliza el papel por las dos caras; regala la ropa que te ha quedado pequeña o que ya no usas. . </p>
+</div>
+
+<center>
+  <b></b><br>
+ </center>
+ 
+ 
+ <div data-role="collapsible">
+ <center>
+ <img src="imagenes/aff4.jpg" width="200" height="200">
+ </center>
+<h1>REDUCIR</h1>
+  <p> Reducir- se refiere reducir el volumen de los residuos. Por ejemplo, consume productos con empaques más pequeños o empaques elaborados con materiales biodegradables o reciclables; reduce el uso, en casa, de productos tóxicos y contaminantes, para contaminar menos nuestros ríos y mares; cuando compres lleva una bolsa de tela o el carrito; disminuye el uso de papel de aluminio; limita el consumo de productos de usar y tirar; y reduce el consumo de energía y agua. </p>
+</div>
+ 
+ <center>
+<b></b><br>
+ </ceneter>
+ 
+ 
+ 
+ <div data-role="collapsible">
+ <center>
+ <img src="imagenes/aff3.jpg" width="200" height="147">
+ </center>
+<h1>RECICLAR</h1>
+  <p>Reciclar- se refiere a transformar los materiales de desecho para crear nuevos productos. Se creativo con materiales que sirven para elaborar otros productos: Papel y Cartón, Vidrio, Metales (hojalata, aluminio, plomo, zinc y otros ferrosos) y Plásticos. Por ejemplo, transforma botellas de PET de desecho en fibras sintéticas para la confección de prendas; elabora con la basura orgánica compost para tu huerta o para tus plantas. Y si no los reciclas tu mismo, sepáralos en bolsas, no los mescles con los residuos orgánicos o patógenos, para que otra persona pueda aprovecharlos reciclándolos.</p>
+</div>
+ 
+ 
+ 
+ 
+ 
+ 
+	</div>
+	<div data-role="footer" data-position="fixed" data-fullscreen="true">
+		<h4>lecheros</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+
+	<div data-role="header">
+    <a data-role="button" data-rel="back" data-direction="reverse" data-icon="back">atras</a>
+    
+		<h1>examen</h1>
+	<img src="imagenes/exa.jpg" width="423" height="348">	</div>
+   
+<div data-role="content">	
+<center>
+ <img src="imagenes/exa2.jpg" width="191" height="147">
+ </center>
+<form name="form1">
+				NOMBRE DEL ESTUDIANTE: 
+				<input type="text" name="nom"><p></center>
+				 1.-SON LOS SERES VIVOS QUE SE ARRASTRAN:<br>
+                                    <input type="radio" name="preg2" OnClick=Verificar(1,0)>a) REPTILES<br>
+					<input type="radio" name="preg2" OnClick=Verificar(1,1)>b) VIVIPAROS<br>
+					<input type="radio" name="preg2" OnClick=Verificar(1,0)>c) NOMADAS<p>
+
+				2.-ECOSISTEMA QUE PREDOMINA CON PRESENCIA DE HIELO:<br>
+					<input type="radio" name="preg2" OnClick=Verificar(1,0)>a) DECIERTO<br>
+					<input type="radio" name="preg2" OnClick=Verificar(1,1)>b) TUNDRA<br>
+					<input type="radio" name="preg2" OnClick=Verificar(1,0)>c) OCEANO<p>
+				3.-REINO AL QUE PERTENECE EL HOMBRE: <br>
+					<input type="radio" name="preg3" OnClick=Verificar(2,0)>a) ANIMAL<br>
+					<input type="radio" name="preg3" OnClick=Verificar(2,1)>c) FUNGI<br>
+					<input type="radio" name="preg3" OnClick=Verificar(2,0)>b) REPTIL<p>
+				4.- NOMBRE QUE SE LES DA A LOS ORGANISMOS FORMADOS POR UNA SOLA CELULA:<br>
+					<input type="radio" name="preg4" OnClick=Verificar(3,0)>a) PLURICELULARES<br>
+					<input type="radio" name="preg4" OnClick=Verificar(3,0)>b) EPITELIALES<br>
+					<input type="radio" name="preg4" OnClick=Verificar(3,1)>c) UNICELULARES<p>
+				5.- NOMBRE QUE SE LES DA A LOS ORGANISMOS FORMADOS POR DOS O MAS CELULAS:<br>
+					<input type="radio" name="preg5" OnClick=Verificar(4,0)>a) EPITELIALES<br>
+					<input type="radio" name="preg5" OnClick=Verificar(4,1)>b) PLURICELULARES<br>
+					<input type="radio" name="preg5" OnClick=Verificar(4,0)>c) UNICELULARES<p>
+				6.- SECUENCIA DE LOS SERES VIVOS QUE DEPENDEN UNOS DE OTROS PARA SUPERVIVENCIA:<br>
+					<input type="radio" name="preg6" OnClick=Verificar(5,0)>a) SIBIOSIS<br>
+					<input type="radio" name="preg6" OnClick=Verificar(5,1)>b) CADENA ALIMENTICIA<br>
+					<input type="radio" name="preg6" OnClick=Verificar(5,0)>c) BIOTIPO<p>
+				7.- COMO SE LE LLAMA A LA CADENA ALIMENTICIA DE HERVIVOROS:<br>
+					<input type="radio" name="preg7" OnClick=Verificar(6,1)>a) CADENA ALIMENTICIA DENTRIFOGA<br>
+					<input type="radio" name="preg7" OnClick=Verificar(6,0)>b) CADENA ALIMENTICIA PARACITICA<br>
+					<input type="radio" name="preg7" OnClick=Verificar(6,0)>c) CADENA ALIMENTICIA BASICA<p>
+				8.- ES LA CAPACIDAD QUE TIENEN LOS SERES VIVOS DE PRODUCIR ORGANISMOS SIMILARES A ELLOS:<br>
+					<input type="radio" name="preg8" OnClick=Verificar(7,0)>a) NUTRICION<br>
+					<input type="radio" name="preg8" OnClick=Verificar(7,0)>b) RESPIRACION<br>
+					<input type="radio" name="preg8" OnClick=Verificar(7,1)>c) REPRODUCCION<p>
+				9.- CAPACIDAD DE RESPONDER A LAS CONDICIONES DEL ENTORNO, PUEDEN SER EXTERNAS O INTERNAS:<br>
+					<input type="radio" name="preg9" OnClick=Verificar(8,0)>a) ADAPTACION<br>
+					<input type="radio" name="preg9" OnClick=Verificar(8,1)>b) IRRITABILIDAD<br>
+					<input type="radio" name="preg9" OnClick=Verificar(8,0)>c) CRECIMIENTO<p>
+				10.- SON FACTORES BIOTICOS DE UN ECOSISTEMA:<br>
+					<input type="radio" name="preg10" OnClick=Verificar(9,0)>a) HUMEDAD, VIENTO<br>
+					<input type="radio" name="preg10" OnClick=Verificar(9,0)>c) PIEDRA, AGUA<br>
+					<input type="radio" name="preg10" OnClick=Verificar(9,1)>d) PLANTAS, ANIMALES<p>
+				11.- SON LOS FACTORES ABIOTICOS DE UN ECOSISTEMA:<br>
+					<input type="radio" name="preg11" OnClick=Verificar(10,0)>a) HUMEDAD, VIENTO<br>
+					<input type="radio" name="preg11" OnClick=Verificar(10,1)>b) PIEDRA, AGUA<br>
+					<input type="radio" name="preg11" OnClick=Verificar(10,0)>c) PLANTAS, ANIMALES<p>
+				12.- ASOCIACION  DE DOS O MAS ESPECIES DIFERENTES PARA UN BENEFICIO PARA AMBOS:<br>
+					<input type="radio" name="preg12" OnClick=Verificar(11,1)>a) COMENSALISMO<br>
+					<input type="radio" name="preg12" OnClick=Verificar(11,0)>b) MUTUALISMO<br>
+					<input type="radio" name="preg12" OnClick=Verificar(11,0)>c) PARADISMO<p>
+				13.- CONSISTE EN LA CAZA Y MUERTE DE ALGUNOS INDIVIDUOS:<br>
+					<input type="radio" name="preg13" OnClick=Verificar(12,1)>a) PREDACION<br>
+					<input type="radio" name="preg13" OnClick=Verificar(12,0)>b) AMENSALISMO<br>
+					<input type="radio" name="preg13" OnClick=Verificar(12,0)>c) BIOSENOSIS<p>
+				14.- SON LAS EVIDENCIAS QUE HAN DEJADO ALGUNOS ORGANISMOS COMO EL TAMAÑO, LA FORMA Y LA FUNCION DE LAS EXTREMIDADES:<br>
+					<input type="radio" name="preg14" OnClick=Verificar(13,1)>b) FOSILES<br>
+					<input type="radio" name="preg14" OnClick=Verificar(13,0)>c) CARACTERISTICAS<br>
+					<input type="radio" name="preg14" OnClick=Verificar(13,0)>a) RASGOS<p>
+				15.- ESTE PROCESO FAVORECE LA SOBREVIVENCIA Y REPRODUCCION DE LOS ORGANISMOS:<br>
+					<input type="radio" name="preg15" OnClick=Verificar(14,1)>a) ADAPTACION<br>
+					<input type="radio" name="preg15" OnClick=Verificar(14,0)>b) SOBREVIVENCIA<br>
+					<input type="radio" name="preg15" OnClick=Verificar(14,0)>c) SELECCION NATURAL<p>
+					
+				<input type="button" value="Evaluar" OnClick=Evalua();><p>
+				<input type="Reset" value="Limpiar" OnClick=Limpia();><p>
+				Aciertos:
+				<input type="text" name="aci">
+				Errores:
+				<input type="text" name="err">
+				Calificaci&oacuten: 
+				<input type="text" name="cal"><p>
+				<center><textarea name="mens" rows="8" cols="25"></textarea></center>
+			</form>
+            <center>
+     <img src="imagenes/exa3.jpg" width="144" height="144">   
+       </center>
+	</div>
+	<div data-role="footer" data-position="fixed" data-fullscreen="true">
+		<h4>LECHEROS</h4>
+	</div>
+</div>
+	
+</body>
+</html>
